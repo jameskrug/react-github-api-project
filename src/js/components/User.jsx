@@ -43,12 +43,12 @@ var User = React.createClass({
         
     },
     
-    // componentDidUpdate: function(){
-    //     console.log(this.props.params.username, this.state.username)
-    //   if (this.props.params.username != this.state.username){
-    //       this.fetchData();
-    //   }  
-    // },
+    componentDidUpdate: function(){
+        console.log(this.props.params.username, this.state.user.login)
+      if (this.props.params.username.toUpperCase() != this.state.user.login.toUpperCase()){
+          this.fetchData();
+      }  
+    },
     
     componentDidMount: function() {
         this.fetchData();

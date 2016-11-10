@@ -7,8 +7,6 @@ var GithubRepo = React.createClass({
     
     render: function(){
         var theUrl = "http://www.github.com/"+this.props.repo.full_name;
-        console.log(theUrl);
-        console.log(this.props.repo)
         return(
             <a href = {theUrl} className = "repolist">
               <p className = "reponame">{this.props.repo.full_name}</p>
