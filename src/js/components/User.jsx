@@ -26,18 +26,32 @@ var User = React.createClass({
     the data -- in the callback -- we call `setState` to put the user data in our state. This will trigger a re-render.
     When `render` gets called again, `this.state.user` exists and we get the user info display instead of "LOADING..."
     */
-    componentDidMount: function() {
+    
+    fetchData: function(){
         var that = this; // What's this?? Make sure you remember or understand what this line does
         
-        $.getJSON(`https://api.github.com/users/${this.props.params.username}`)
+        $.getJSON(`https://api.github.com/users/${this.props.params.username}?client_id=d1bd4fb2096c1b3d66fb&client_secret=34d5a12aef7b9fec6bd6c6b8e50facb891dc7293`)
             .then(
                 function(user) {
+                    // var theUsername = that.props.params.username;
                     // Why that.setState instead of this.setState??
                     that.setState({
                         user: user
                     });
                 }
             );
+        
+    },
+    
+    // componentDidUpdate: function(){
+    //     console.log(this.props.params.username, this.state.username)
+    //   if (this.props.params.username != this.state.username){
+    //       this.fetchData();
+    //   }  
+    // },
+    
+    componentDidMount: function() {
+        this.fetchData();
     },
     /*
     This method is used as a mapping function. Eventually this could be factored out to its own component.
@@ -94,6 +108,7 @@ var User = React.createClass({
                         {stats.map(this.renderStat)}              
                     </ul>
                 </div>
+                {this.props.children}
             </div>
         );
     }
